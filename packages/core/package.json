@@ -7,7 +7,8 @@
     "./kinship": "./kinship.ts",
     "./i18n": "./i18n/index.ts",
     "./config": "./config.ts",
-    "./database.types": "./database.types.ts"
+    "./database.types": "./database.types.ts",
+    "./initials": "./initials.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit -p ."

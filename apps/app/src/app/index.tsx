@@ -1,7 +1,8 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Image } from 'expo-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useTheme } from '@aalthara/ui';
+import { useRouter } from 'expo-router';
+import { Button, useTheme } from '@aalthara/ui';
 import { useI18n } from '@/i18n';
 import { publicConfig } from '@/config';
 
@@ -10,6 +11,7 @@ export default function Welcome() {
   const theme = useTheme();
   const { t, locale, setLocale } = useI18n();
   const insets = useSafeAreaInsets();
+  const router = useRouter();
   const other = locale === 'en' ? 'ml' : 'en';
   const status = publicConfig.ok
     ? t('status.serverReady')
@@ -41,6 +43,8 @@ export default function Welcome() {
           {status}
         </Text>
       </View>
+      <View style={{ gap: theme.space[3] }}>
+      <Button variant="secondary" fullWidth label={t('gallery.open')} onPress={() => router.push('/gallery')} />
       <Pressable
         accessibilityRole="button"
         accessibilityLabel={switchLabel}
@@ -52,6 +56,7 @@ export default function Welcome() {
       >
         <Text style={[theme.type('label'), { color: c.onBrand, textAlign: 'center' }]}>{switchLabel}</Text>
       </Pressable>
+      </View>
     </ScrollView>
   );
 }

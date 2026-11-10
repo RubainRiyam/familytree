@@ -8,14 +8,17 @@
   "scripts": {
     "typecheck": "pnpm -r --parallel typecheck",
     "lint": "eslint .",
-    "test": "node --test \"packages/**/*.test.ts\" \"scripts/*.test.ts\"",
+    "test": "node --test \"packages/**/*.test.ts\" \"scripts/*.test.ts\" && pnpm --filter @aalthara/app test",
     "test:db": "scripts/test-db.sh",
     "gen:theme": "node packages/ui/scripts/gen-theme.ts",
     "gen:types": "GEN_TYPES=1 scripts/test-db.sh",
-    "app": "pnpm --filter @aalthara/app start"
+    "app": "pnpm --filter @aalthara/app start",
+    "gen:icons": "node packages/ui/scripts/gen-icons.ts",
+    "test:unit": "node --test \"packages/**/*.test.ts\" \"scripts/*.test.ts\""
   },
   "type": "module",
   "devDependencies": {
+    "@phosphor-icons/core": "^2.1.1",
     "@types/node": "^22.20.5",
     "eslint": "^9.39.5",
     "eslint-config-expo": "~58.0.4",

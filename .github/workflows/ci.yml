@@ -21,6 +21,8 @@ jobs:
         with: { node-version: 22, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm gen:theme --check
+      - name: icons.generated.ts is up to date
+        run: pnpm gen:icons && git diff --exit-code packages/ui/icons.generated.ts
       - run: pnpm typecheck
       - run: pnpm lint
       - run: pnpm test
