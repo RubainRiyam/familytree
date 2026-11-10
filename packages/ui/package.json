@@ -1,0 +1,10 @@
+{
+  "name": "@aalthara/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "index.ts",
+  "exports": { ".": "./index.ts", "./theme.generated": "./theme.generated.ts" },
+  "scripts": { "typecheck": "tsc --noEmit -p ." },
+  "peerDependencies": { "react": "*", "react-native": "*" }
+}

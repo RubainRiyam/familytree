@@ -7,11 +7,16 @@ Aalthara (ആൽത്തറ) is a family tree and directory app sold to family 
 | Path | State |
 |---|---|
 | `supabase/migrations/0001_init.sql` | Complete schema, RLS and RPCs. **Tested** on Postgres 16 by `scripts/test-db.sh` (50 checks, all passing). |
-| `supabase/migrations/0002_storage.sql` | Photo bucket and policies. **Not yet run anywhere**; verify on the Supabase project. |
-| `supabase/tests/` | Local stubs for `auth` + the smoke test. Extend it whenever the schema changes. |
+| `supabase/migrations/0002_storage.sql` | Photo bucket and policies. Tested locally against a storage stub (`supabase/tests/02_storage.sql`); still verify on the Supabase project. |
+| `supabase/tests/` | Local stubs for `auth` and `storage`, the smoke test and the storage test. Extend it whenever the schema changes. |
 | `packages/core/kinship.ts` | Kinship-term resolver with tests (`node --test packages/core/kinship.test.ts`). |
 | `site/` | Static launch website with Privacy Policy, Terms and account-deletion page. Deploys to Vercel as is. |
 | `design/tokens.json`, `design/logo/` | Design tokens (light + dark) and logo SVGs. Source of truth for all colour, type, spacing. |
+| `apps/app/` | Expo (Router, TypeScript strict) app. Milestone 0: blank themed screen. |
+| `packages/ui/` | Theme generated from `design/tokens.json` (`pnpm gen:theme`), ThemeProvider, contrast tests. |
+| `packages/core/i18n/` | `en.ts`, `ml.ts` (compiler-enforced parity), `ml.todo.json` (unreviewed Malayalam). |
+| `packages/core/database.types.ts` | Generated from the migrations by `pnpm gen:types`; CI fails if stale. |
+| `scripts/policy.test.ts` | Mechanical checks of the non-negotiables (no tracking SDKs, no secret keys in client code, no caste/religion/ID columns, `0001_init.sql` pinned). |
 
 Everything else (the Expo app, API functions, CI) is yours to build.
 
@@ -37,10 +42,17 @@ Everything else (the Expo app, API functions, CI) is yours to build.
 ## Commands
 
 ```bash
-scripts/test-db.sh                               # schema + RLS + RPC smoke test on a throwaway local Postgres
-node --test packages/core/kinship.test.ts        # kinship resolver
+pnpm install                                     # workspace (node-linker=hoisted, for Expo)
+pnpm typecheck && pnpm lint && pnpm test         # what CI runs (unit, theme, i18n, policy tests)
+scripts/test-db.sh                               # schema + RLS + RPC + storage tests on a throwaway local Postgres (non-root user)
+pnpm gen:types                                   # same, and regenerate packages/core/database.types.ts
+pnpm gen:theme                                   # regenerate packages/ui/theme.generated.ts from design/tokens.json
+node --test packages/core/kinship.test.ts        # kinship resolver alone
+pnpm app                                         # Expo dev server (copy apps/app/.env.example to .env first)
 npx vercel deploy site                           # launch website (static; no build step)
 ```
+
+Gotchas: import platform-split modules (`Foo.web.ts`, `Foo.ios.tsx`) without an extension or Metro ignores the variant (a policy test checks this). With a custom font family never also set `fontWeight` (Android drops the family); use `theme.type(...)`. `expo install` needs api.expo.dev; offline use `EXPO_OFFLINE=1 npx expo install <pkg>`.
 
 ## Open items only the owner can settle
 
