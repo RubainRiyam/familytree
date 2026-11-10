@@ -4,7 +4,20 @@
   "private": true,
   "type": "module",
   "main": "index.ts",
-  "exports": { ".": "./index.ts", "./theme.generated": "./theme.generated.ts" },
-  "scripts": { "typecheck": "tsc --noEmit -p ." },
-  "peerDependencies": { "react": "*", "react-native": "*" }
+  "exports": {
+    ".": "./index.ts",
+    "./theme.generated": "./theme.generated.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*",
+    "react-native-svg": "*",
+    "expo-image": "*"
+  },
+  "dependencies": {
+    "@aalthara/core": "workspace:*"
+  }
 }

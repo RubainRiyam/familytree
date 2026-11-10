@@ -42,11 +42,13 @@ export type Theme = {
   shadow: (typeof shadows)[Scheme];
   space: typeof space;
   radius: typeof radius;
+  /** In-app text size step (1, 1.25, 1.5), applied on top of the system font setting. */
+  textScale: number;
   /** A ready-to-use text style for a type token. Sizes scale with the system font setting. */
   type: (style: TypeStyle) => TextStyle;
 };
 
-export function makeTheme(scheme: Scheme, locale: Locale): Theme {
+export function makeTheme(scheme: Scheme, locale: Locale, textScale = 1): Theme {
   const cache = {} as Record<TypeStyle, TextStyle>;
   return {
     scheme,
@@ -55,12 +57,13 @@ export function makeTheme(scheme: Scheme, locale: Locale): Theme {
     shadow: shadows[scheme],
     space,
     radius,
+    textScale,
     type: (style) =>
       (cache[style] ??= (() => {
         const t = typeScale[style];
         // Malayalam glyphs sit taller; give them a little more line height so stacked marks never clip.
-        const lineHeight = locale === 'ml' ? Math.round(t.lineHeight * 1.15) : t.lineHeight;
-        return { fontFamily: fontFamily(t.family, t.fontWeight, locale), fontSize: t.fontSize, lineHeight };
+        const lineHeight = (locale === 'ml' ? t.lineHeight * 1.15 : t.lineHeight) * textScale;
+        return { fontFamily: fontFamily(t.family, t.fontWeight, locale), fontSize: Math.round(t.fontSize * textScale), lineHeight: Math.round(lineHeight) };
       })()),
   };
 }

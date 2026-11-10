@@ -13,7 +13,8 @@ Aalthara (ആൽത്തറ) is a family tree and directory app sold to family 
 | `site/` | Static launch website with Privacy Policy, Terms and account-deletion page. Deploys to Vercel as is. |
 | `design/tokens.json`, `design/logo/` | Design tokens (light + dark) and logo SVGs. Source of truth for all colour, type, spacing. |
 | `apps/app/` | Expo (Router, TypeScript strict) app. Milestone 0: blank themed screen. |
-| `packages/ui/` | Theme generated from `design/tokens.json` (`pnpm gen:theme`), ThemeProvider, contrast tests. |
+| `packages/ui/` | Theme generated from `design/tokens.json` (`pnpm gen:theme`), ThemeProvider, contrast tests, and the design-system components (`components/`), each with a `manner` prop (`ios`/`android`). Icons: Phosphor path data via `pnpm gen:icons`. |
+| `apps/app/src/app/gallery.tsx` | Every component in both themes, both manners, en/ml, 100–160% text. `scripts/gallery-sweep.cjs` checks it mechanically. |
 | `packages/core/i18n/` | `en.ts`, `ml.ts` (compiler-enforced parity), `ml.todo.json` (unreviewed Malayalam). |
 | `packages/core/database.types.ts` | Generated from the migrations by `pnpm gen:types`; CI fails if stale. |
 | `scripts/policy.test.ts` | Mechanical checks of the non-negotiables (no tracking SDKs, no secret keys in client code, no caste/religion/ID columns, `0001_init.sql` pinned). |
@@ -47,6 +48,7 @@ pnpm typecheck && pnpm lint && pnpm test         # what CI runs (unit, theme, i1
 scripts/test-db.sh                               # schema + RLS + RPC + storage tests on a throwaway local Postgres (non-root user)
 pnpm gen:types                                   # same, and regenerate packages/core/database.types.ts
 pnpm gen:theme                                   # regenerate packages/ui/theme.generated.ts from design/tokens.json
+pnpm --filter @aalthara/app test                 # component tests (jest-expo + Testing Library; part of pnpm test)
 node --test packages/core/kinship.test.ts        # kinship resolver alone
 pnpm app                                         # Expo dev server (copy apps/app/.env.example to .env first)
 npx vercel deploy site                           # launch website (static; no build step)
