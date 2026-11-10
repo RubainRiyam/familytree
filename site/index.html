@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aalthara — the family tree and directory for Kerala families</title>
+<meta name="description" content="Aalthara keeps every member of your family association in one place: the tree, the phone numbers, who lives where. Built for elders, in Malayalam and English, with no ads.">
+<meta name="theme-color" content="#0B5D45">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' rx='26' fill='%230B5D45'/%3E%3Cg transform='translate(18 16) scale(.7)'%3E%3Ccircle cx='42' cy='27' r='13' fill='%23FF7A80'/%3E%3Ccircle cx='80' cy='25' r='11' fill='%23F27DB4'/%3E%3Ccircle cx='29' cy='52' r='17' fill='%234CC9D8'/%3E%3Ccircle cx='91' cy='50' r='17' fill='%23FFC42E'/%3E%3Ccircle cx='60' cy='44' r='25' fill='%235FD38A'/%3E%3Crect x='54' y='62' width='12' height='22' fill='%23FFFCF5'/%3E%3Crect x='32' y='80' width='56' height='12' rx='6' fill='%23FFFCF5'/%3E%3Crect x='18' y='92' width='84' height='14' rx='7' fill='%23FFFCF5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@400..800&family=Atkinson+Hyperlegible+Next:wght@400;700&display=swap">
+<style>
+:root{
+  --ground:#FFFCF5;--surface:#FFFFFF;--sunk:#F4EFE2;--line:#DDD5C2;--line-strong:#6F6B5C;--ink:#12261E;--ink-muted:#4D5B54;
+  --brand:#0B5D45;--on-brand:#FFFFFF;--brand-tint:#DDF0E6;--manjal:#FFC42E;
+  --chethi:#C8242F;--vazha:#1F7A3F;--kayal:#087482;--mazha:#3949AB;--chakka:#F2A007;--kadalas:#B6246B;--focus:#3949AB;
+  --display:"Anek Malayalam","Noto Sans Malayalam",system-ui,sans-serif;
+  --text:"Atkinson Hyperlegible Next","Anek Malayalam","Noto Sans Malayalam",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--text);font-size:1.125rem;line-height:1.6}
+h1,h2,h3{font-family:var(--display);line-height:1.1;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.5rem,6vw,4.5rem);font-weight:800;letter-spacing:-.01em}
+h2{font-size:clamp(1.9rem,4vw,2.75rem);font-weight:800}
+h3{font-size:1.4rem;font-weight:700;line-height:1.25}
+p{margin:0}
+a{color:var(--brand);text-underline-offset:3px}
+a:hover{color:var(--ink)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-999px}.skip:focus{left:12px;top:12px;background:var(--surface);padding:12px 16px;z-index:10}
+header.top{position:sticky;top:0;z-index:5;background:var(--ground);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:16px;min-height:72px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);font:800 1.6rem/1 var(--display);margin-right:auto}
+.logo svg{width:44px;height:44px}
+.bar nav{display:flex;gap:4px;flex-wrap:wrap}
+.bar nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 14px;border-radius:999px;color:var(--ink);text-decoration:none;font-weight:700;font-size:1rem}
+.bar nav a:hover{background:var(--sunk)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 28px;border-radius:999px;border:2px solid var(--brand);background:var(--brand);color:var(--on-brand);font:700 1.06rem/1.3 var(--text);text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.alt{background:var(--surface);color:var(--brand)}.btn.alt:hover{background:var(--brand-tint);color:var(--brand);border-color:var(--brand)}
+section{padding:72px 0}
+.hero{padding:56px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.ml{font-family:var(--display);font-weight:700;color:var(--brand);font-size:1.35rem}
+.lede{font-size:1.3rem;line-height:1.55;color:var(--ink-muted);max-width:34ch;margin:20px 0 28px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero svg{width:100%;height:auto;max-width:480px;justify-self:center}
+.promise{background:var(--ink);color:var(--ground);padding:36px 0}
+.promise ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.promise b{display:block;font:800 1.5rem/1.2 var(--display);color:var(--manjal);margin-bottom:6px}
+.promise span{color:#D9DED6}
+.head{max-width:40ch;margin-bottom:40px}.head p{color:var(--ink-muted);margin-top:14px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:24px;display:flex;flex-direction:column;gap:10px}
+.card p{color:var(--ink-muted)}
+.dot{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;color:#fff;font:800 1.25rem/1 var(--display);margin-bottom:6px}
+.dot.y{color:var(--ink)}
+.band{background:var(--sunk)}
+.steps{counter-reset:s;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.steps li{counter-increment:s;background:var(--surface);border-radius:24px;padding:24px;border:1px solid var(--line)}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:56px;height:56px;border-radius:999px;background:var(--manjal);font:800 1.5rem/1 var(--display);margin-bottom:14px}
+.steps p{color:var(--ink-muted);margin-top:8px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.plan{background:var(--surface);border:2px solid var(--line);border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px}
+.plan.pick{border-color:var(--brand)}
+.price{font:800 2.6rem/1 var(--display)}.price small{font:400 1rem/1.4 var(--text);color:var(--ink-muted);display:block;margin-top:8px}
+.plan ul{margin:0;padding-left:1.2em;color:var(--ink-muted);flex:1}.plan li{margin:6px 0}
+.note{color:var(--ink-muted);font-size:1rem;margin-top:20px;max-width:70ch}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;margin-bottom:12px}
+summary{cursor:pointer;padding:18px 20px;font:700 1.2rem/1.35 var(--display);min-height:56px;list-style-position:outside;margin-left:1.2em}
+details p{padding:0 20px 20px;color:var(--ink-muted);max-width:70ch}
+.start{background:var(--brand);color:#fff;text-align:center}
+.start h2{max-width:20ch;margin:0 auto 16px}.start p{color:#DDF0E6;max-width:52ch;margin:0 auto 28px}
+.start .btn{background:var(--manjal);border-color:var(--manjal);color:var(--ink)}.start .btn:hover{background:#fff;border-color:#fff;color:var(--ink)}
+.start a:not(.btn){color:#fff}
+footer{padding:48px 0;border-top:1px solid var(--line);font-size:1rem;color:var(--ink-muted)}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+footer b{color:var(--ink);display:block;margin-bottom:8px}
+footer a{display:inline-block;padding:6px 0}
+.legal{max-width:760px;padding-top:48px;padding-bottom:80px}
+.legal h1{font-size:clamp(2.2rem,5vw,3.25rem);margin-bottom:12px}
+.legal h2{font-size:1.6rem;margin:40px 0 12px}
+.legal h3{font-size:1.2rem;margin:24px 0 8px}
+.legal p,.legal li{margin-bottom:12px}
+.legal ul,.legal ol{padding-left:1.3em;margin:0 0 12px}
+.legal .meta{color:var(--ink-muted)}
+.legal .box{background:var(--brand-tint);border-radius:16px;padding:20px;margin:24px 0}
+.legal table{width:100%;border-collapse:collapse;margin:12px 0 20px;font-size:1rem}
+.legal th,.legal td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+.tablebox{overflow-x:auto}
+[data-view]{display:none}[data-view].on{display:block}
+@media (max-width:860px){
+  .hero .wrap,.grid,.steps,.plans,.promise ul,footer .wrap{grid-template-columns:1fr}
+  section{padding:56px 0}.hero svg{max-width:340px}
+  .bar nav a{padding:0 10px}
+  header.top{position:static}.bar>.btn{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#home" aria-label="Aalthara home">
+      <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="42" cy="27" r="13" fill="#C8242F"/><circle cx="80" cy="25" r="11" fill="#B6246B"/><circle cx="29" cy="52" r="17" fill="#087482"/><circle cx="91" cy="50" r="17" fill="#F2A007"/><circle cx="60" cy="44" r="25" fill="#1F7A3F"/><rect x="54" y="62" width="12" height="22" fill="#12261E"/><rect x="32" y="80" width="56" height="12" rx="6" fill="#12261E"/><rect x="18" y="92" width="84" height="14" rx="7" fill="#12261E"/></svg>
+      Aalthara
+    </a>
+    <nav aria-label="Site">
+      <a href="#features">What it does</a>
+      <a href="#pricing">Price</a>
+      <a href="#questions">Questions</a>
+    </nav>
+    <a class="btn" href="#start">Start your family</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ═════════ HOME ═════════ -->
+<div data-view="home" class="on">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="ml">ആൽത്തറ · കുടുംബം ഒരു തണലിൽ</p>
+      <h1>The whole family, under one tree.</h1>
+      <p class="lede">Aalthara is the family tree and directory for Kerala's family associations. Every member, every relation, every phone number, in an app the eldest person in the family can use alone.</p>
+      <div class="cta">
+        <a class="btn" href="#start">Start your family</a>
+        <a class="btn alt" href="#features">See what it does</a>
+      </div>
+    </div>
+    <svg viewBox="0 0 480 440" role="img" aria-label="A banyan tree whose canopy is made of family members: mother, father, elder sister, younger brother and you, standing on a stone platform.">
+      <g font-family="Anek Malayalam, sans-serif" font-weight="800" text-anchor="middle">
+        <circle cx="140" cy="84" r="56" fill="#C8242F"/><text x="120" y="90" font-size="26" fill="#fff">അച്ഛൻ</text>
+        <circle cx="336" cy="76" r="50" fill="#B6246B"/><text x="346" y="82" font-size="28" fill="#fff">അമ്മ</text>
+        <circle cx="84" cy="212" r="72" fill="#087482"/><text x="72" y="223" font-size="30" fill="#fff">ചേച്ചി</text>
+        <circle cx="396" cy="206" r="72" fill="#F2A007"/><text x="414" y="216" font-size="26" fill="#12261E">അനിയൻ</text>
+        <circle cx="240" cy="176" r="96" fill="#1F7A3F"/><text x="240" y="194" font-size="54" fill="#fff">ഞാൻ</text>
+      </g>
+      <rect x="216" y="262" width="48" height="76" fill="#12261E"/>
+      <rect x="120" y="326" width="240" height="44" rx="22" fill="#12261E"/>
+      <rect x="56" y="370" width="368" height="52" rx="26" fill="#12261E"/>
+    </svg>
+  </div>
+</section>
+
+<section class="promise" aria-label="Our promises">
+  <div class="wrap"><ul>
+    <li><b>No ads. Not now, not later.</b><span>The family pays a small fee, so nobody has to sell your attention.</span></li>
+    <li><b>Your family's details stay in the family.</b><span>Only members can see anything. Nothing is public, and nothing is sold or shared for marketing.</span></li>
+    <li><b>Leave whenever you like.</b><span>Download the whole directory at any time, and delete it for good when you ask.</span></li>
+  </ul></div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <div class="head"><h2>Everything a kudumbayogam keeps in files and phone books, in one place.</h2></div>
+    <div class="grid">
+      <div class="card"><span class="dot" style="background:var(--vazha)" aria-hidden="true">1</span><h3>Register everyone in an evening</h3><p>Start with yourself. Add your mother, father, husband or wife, and children with one button each. Send relatives a WhatsApp link and they fill in their own households.</p></div>
+      <div class="card"><span class="dot" style="background:var(--kayal)" aria-hidden="true">2</span><h3>Walk the tree, one home at a time</h3><p>No tiny chart to pinch and zoom. You see one person with their parents, partner and children. Tap anyone to move to them, as far up or down as the family goes.</p></div>
+      <div class="card"><span class="dot y" style="background:var(--chakka)" aria-hidden="true">3</span><h3>Find people by what you know</h3><p>Who lives in Dubai? Who is a doctor? Who has O+ blood near Kochi? Whose birthday is this month? Tap a fact and the list answers.</p></div>
+      <div class="card"><span class="dot" style="background:var(--chethi)" aria-hidden="true">4</span><h3>How are we related?</h3><p>Pick any two people and see the path between them, in the family's own words: അമ്മാവൻ, വല്യമ്മ, ചേച്ചി, not just "uncle" and "cousin".</p></div>
+      <div class="card"><span class="dot" style="background:var(--mazha)" aria-hidden="true">5</span><h3>One person, many families</h3><p>You belong to your father's family, your mother's, and the one you married into. One account, one profile, and every family you are part of, each private from the others.</p></div>
+      <div class="card"><span class="dot" style="background:var(--kadalas)" aria-hidden="true">6</span><h3>Made for the eldest first</h3><p>Large text, big buttons, Malayalam and English, and no passwords: a code by text message signs you in. Birthdays, the annual meet and notices arrive without anyone hunting for them.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="head"><h2>How a family gets started</h2></div>
+    <ol class="steps">
+      <li><h3>One person starts the family</h3><p>Usually the secretary or whoever keeps the register. They name the family, add their own household, and get a family code.</p></li>
+      <li><h3>They share the code</h3><p>On WhatsApp, on the notice for the next meet, or over the phone. Relatives join with their mobile number and the code.</p></li>
+      <li><h3>Each home adds its own people</h3><p>Every household fills in its own branch. Admins approve, tidy duplicates, and print the directory when it is ready.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="head"><h2>Pay once for the family. A small upkeep fee each year.</h2><p>The family association pays, not each member. Try it free for 30 days with up to 50 people.</p></div>
+    <div class="plans">
+      <div class="plan"><h3>Kudumbam</h3><p class="price">₹7,500<small>once, then ₹1,200 a year from the second year</small></p><ul><li>Up to 300 family members</li><li>Tree, directory, search, events</li><li>Printable directory (PDF)</li><li>Help by phone and WhatsApp</li></ul><a class="btn alt" href="#start">Start free</a></div>
+      <div class="plan pick"><h3>Tharavadu</h3><p class="price">₹15,000<small>once, then ₹2,400 a year from the second year</small></p><ul><li>Up to 1,500 family members</li><li>Everything in Kudumbam</li><li>Branches with their own admins</li><li>We help import your existing register</li></ul><a class="btn" href="#start">Start free</a></div>
+      <div class="plan"><h3>Larger families</h3><p class="price">Talk to us<small>for more than 1,500 members or several associations</small></p><ul><li>Everything in Tharavadu</li><li>A price that fits your size</li><li>On-site help at your annual meet</li></ul><a class="btn alt" href="#start">Contact us</a></div>
+    </div>
+    <p class="note">Prices are in Indian rupees and exclude GST. Members never pay and never see an advertisement. If a family stops paying the yearly fee, nothing is deleted: the family becomes read-only and can still download its directory.</p>
+  </div>
+</section>
+
+<section id="questions" class="band">
+  <div class="wrap">
+    <div class="head"><h2>Questions families ask</h2></div>
+    <details><summary>Who can see our family's details?</summary><p>Only people who are members of your family on Aalthara. Nothing is visible to the public or to search engines. Each person chooses whether their phone number is shown to the family, only to admins, or to nobody.</p></details>
+    <details><summary>My mother does not use apps. Can she still be in the tree?</summary><p>Yes. Anyone can be added by a relative without having the app. If she later signs in with her own number, the profile becomes hers and only she can change it.</p></details>
+    <details><summary>What about children?</summary><p>Children under 18 cannot have an account. A parent can add a child to the tree with a name and birthday. Aalthara does not keep a child's phone number or address, and never shows a child anything based on tracking.</p></details>
+    <details><summary>I am in my wife's family association too. Do I need two accounts?</summary><p>No. One mobile number, one account, one profile. You simply appear in each family you belong to, and each family sees only its own members.</p></details>
+    <details><summary>Do you record caste or religion?</summary><p>No. There is no field for either, and we do not want that information. Families of every community use the same app.</p></details>
+    <details><summary>Can we print the directory?</summary><p>Yes. Admins can download the directory as a PDF, laid out for printing as a booklet, and as a spreadsheet.</p></details>
+    <details><summary>What happens if we stop using Aalthara?</summary><p>Download your data, then ask us to delete the family. We erase it from our systems and from backups within 35 days.</p></details>
+  </div>
+</section>
+
+<section id="start" class="start">
+  <div class="wrap">
+    <h2>Start your family on Aalthara</h2>
+    <p>Tell us your family's name and roughly how many members it has. We will set you up and stay on the phone while you add your first household.</p>
+    <a class="btn" data-mail="Start our family on Aalthara" href="mailto:[SUPPORT EMAIL]">Write to us</a>
+    <p style="margin-top:20px">Or call or WhatsApp <span data-c="phone">[SUPPORT PHONE]</span> · <span data-c="email">[SUPPORT EMAIL]</span></p>
+  </div>
+</section>
+</div>
+
+<!-- ═════════ PRIVACY ═════════ -->
+<div data-view="privacy">
+<article class="wrap legal">
+<h1>Privacy Policy</h1>
+<p class="meta">Effective <span data-c="effective">[EFFECTIVE DATE]</span> · Version 1</p>
+<div class="box"><p><b>The short version.</b> Aalthara holds your family's tree and directory so that members of your family, and nobody else, can see it. We show no advertisements, we do not sell or rent personal data, we do not collect caste, religion or government ID numbers, and you can download or delete your data whenever you wish.</p></div>
+
+<h2>1. Who we are</h2>
+<p>Aalthara is operated by <span data-c="company">[COMPANY LEGAL NAME]</span>, <span data-c="address">[REGISTERED ADDRESS, KERALA, INDIA]</span> ("Aalthara", "we"). This policy explains what personal data we handle in the Aalthara apps and website, why, and what choices you have. It is written to meet the Digital Personal Data Protection Act, 2023 and the Digital Personal Data Protection Rules, 2025 ("DPDP law").</p>
+<p>Two roles matter under that law:</p>
+<ul>
+<li>For your own account and the profile you create or claim, <b>we are the Data Fiduciary</b>: we decide how it is processed and answer to you for it.</li>
+<li>For the directory a family association builds about its members, <b>the association is the Data Fiduciary and we are its Data Processor</b>: we hold that data on its instructions. The association's admins are responsible for having a proper basis for the details they add.</li>
+</ul>
+
+<h2>2. What we collect</h2>
+<div class="tablebox"><table>
+<thead><tr><th>What</th><th>Examples</th><th>Where it comes from</th></tr></thead>
+<tbody>
+<tr><td>Account</td><td>Mobile number, language, text size, notification choices</td><td>You</td></tr>
+<tr><td>Profile</td><td>Name, house name, name in Malayalam, gender, date or year of birth, photo, place you live, native place, occupation, education, blood group (optional)</td><td>You, or a relative or family admin who adds you</td></tr>
+<tr><td>Relationships</td><td>Who your parents, partner and children are; which families and branches you belong to</td><td>You, relatives, family admins</td></tr>
+<tr><td>Contact details</td><td>Phone, WhatsApp number, email, postal address</td><td>You, or a family admin who holds your consent</td></tr>
+<tr><td>Family activity</td><td>Events, notices, whether you are coming to an event</td><td>You and family admins</td></tr>
+<tr><td>Technical</td><td>Device type, app version, push notification token, IP address, crash and error logs</td><td>Your device</td></tr>
+<tr><td>Payments (admins only)</td><td>Amount, date, payment reference, billing name and GST number if given</td><td>Our payment processor. We never see or store card or bank details.</td></tr>
+</tbody></table></div>
+<p><b>What we do not collect:</b> caste, religion, Aadhaar, PAN or other government ID numbers, your phone's contact list, your precise location, advertising identifiers, or anything about your use of other apps.</p>
+
+<h2>3. Why we use it</h2>
+<ul>
+<li>To sign you in and keep your account secure.</li>
+<li>To show your families their tree and directory, work out how people are related, and let members find one another.</li>
+<li>To send what you asked for: sign-in codes, invitations, birthday and event reminders.</li>
+<li>To take payment from family admins and keep the records tax law requires.</li>
+<li>To keep the service working, find faults and prevent misuse.</li>
+</ul>
+<p>We rely on your consent, given when you create an account or accept an invitation after reading a plain notice of what is collected and why. You can withdraw consent at any time (section 9). We do not use personal data for advertising, profiling or automated decisions, and we do not train AI models on your family's data.</p>
+
+<h2>4. If a relative added you</h2>
+<p>Families are built by relatives adding each other, so a profile may exist for you before you ever open the app. Until you confirm it yourself, such a profile is marked as unconfirmed and the person who added it, and the family's admins, remain responsible for it. When your mobile number is added, we send you a message saying who added you and to which family, with a link to see, correct or remove what is held. You do not need an account to ask us to remove it: write to <span data-c="email">[SUPPORT EMAIL]</span>.</p>
+<p>Profiles of family members who have died are part of the family's history. They hold no contact details and can be corrected or removed by the family's admins.</p>
+
+<h2>5. Children</h2>
+<p>Aalthara accounts are for adults aged 18 and over. A child under 18 can appear in a family tree only as a limited profile (name, gender, birthday, place in the tree) added by a parent or lawful guardian who has an account and gives verifiable consent, or by a family admin who holds that consent. We do not store a child's phone number, email or address, we do not track or monitor children, and we direct no advertising at anyone. When a child turns 18 they may claim the profile and take control of it.</p>
+
+<h2>6. Who can see what</h2>
+<ul>
+<li><b>Members of a family</b> you belong to can see your profile and your relationships within that family.</li>
+<li><b>Your contact details</b> follow your choice: visible to your families, to family admins only, or hidden.</li>
+<li><b>Other families</b> cannot see you. If you belong to two families, each sees only its own members.</li>
+<li><b>The public and search engines</b> can see nothing.</li>
+<li><b>Our staff</b> access family data only when you ask for help or when needed to fix a fault or meet a legal duty, and that access is logged.</li>
+</ul>
+
+<h2>7. Who we share it with</h2>
+<p>We share personal data only with service providers that process it for us under contract: cloud database and file hosting, website hosting, the text-message and WhatsApp services that deliver sign-in codes and invitations, Apple and Google for push notifications, our payment processor, and error-monitoring tools. The current list of providers and where they process data is published at the end of this policy. We may disclose data where a law or a court order requires it. We do not sell, rent or trade personal data, and we do not share it for anyone's marketing.</p>
+
+<h2>8. Where it is kept, and for how long</h2>
+<p>Family data is stored on servers in India. Some providers (for example those that deliver messages or notifications) may process limited data outside India, only as Indian law permits.</p>
+<ul>
+<li>We keep your account and profile while your account is open.</li>
+<li>If you have not signed in for three years, we will tell you at least 48 hours in advance and then erase your account unless you sign in.</li>
+<li>When you or a family ask for erasure, we remove the data from live systems promptly and from backups within 35 days.</li>
+<li>Payment and tax records are kept for as long as tax and company law require, and access logs for at least one year as the DPDP law requires.</li>
+</ul>
+
+<h2>9. Your rights and choices</h2>
+<p>In the app, go to <b>Me › Privacy and my data</b>, or write to us. You can:</p>
+<ul>
+<li><b>See</b> a summary of the personal data we hold about you and who it is shared with, and download a copy.</li>
+<li><b>Correct or complete</b> anything in your profile.</li>
+<li><b>Withdraw consent</b> and <b>erase</b> your account. See "What erasure does" below.</li>
+<li><b>Nominate</b> someone to exercise these rights for you if you die or are unable to.</li>
+<li><b>Complain</b> to our Grievance Officer. We answer within 7 days and resolve complaints within 30 days wherever we can, and in every case within the 90 days the law allows. If you are not satisfied, you may complain to the Data Protection Board of India.</li>
+</ul>
+<h3>What erasure does</h3>
+<p>Your contact details, photo, birthday, places, work and every other personal field are deleted and your account is closed. If other people are connected through you in a family tree (for example your children), an unnamed "Private member" placeholder stays in your place so their links to each other are not broken. If nobody is connected through you, the profile is deleted completely.</p>
+
+<h2>10. How we protect it</h2>
+<p>Data is encrypted in transit and at rest. Every request to the database is checked against the rule that you can read only families you belong to. Admin actions are logged. Sign-in is by one-time code, so there is no password to steal. We test our access rules automatically before each release. If a personal data breach occurs, we will tell every affected person and the Data Protection Board without delay, and give the Board a detailed report within 72 hours.</p>
+
+<h2>11. Changes to this policy</h2>
+<p>If we change this policy in a way that matters, we will tell you in the app before the change takes effect, and ask for your consent again where the law requires it. Earlier versions are available on request.</p>
+
+<h2>12. Contact</h2>
+<p><b>Grievance Officer and data protection contact:</b> <span data-c="officer">[GRIEVANCE OFFICER NAME]</span>, <span data-c="company">[COMPANY LEGAL NAME]</span>, <span data-c="address">[REGISTERED ADDRESS, KERALA, INDIA]</span>. Email <span data-c="email">[SUPPORT EMAIL]</span>, phone <span data-c="phone">[SUPPORT PHONE]</span>.</p>
+
+<h2>Service providers</h2>
+<div class="tablebox"><table>
+<thead><tr><th>Purpose</th><th>Provider</th><th>Processing location</th></tr></thead>
+<tbody>
+<tr><td>Database, sign-in, file storage</td><td>Supabase</td><td>India (Mumbai)</td></tr>
+<tr><td>Website and API hosting</td><td>Vercel</td><td>India (Mumbai) and global edge network</td></tr>
+<tr><td>Sign-in codes and invitations by SMS and WhatsApp</td><td>[SMS PROVIDER]</td><td>[LOCATION]</td></tr>
+<tr><td>Push notifications</td><td>Apple, Google</td><td>Global</td></tr>
+<tr><td>Payments</td><td>Razorpay</td><td>India</td></tr>
+</tbody></table></div>
+</article>
+</div>
+
+<!-- ═════════ TERMS ═════════ -->
+<div data-view="terms">
+<article class="wrap legal">
+<h1>Terms of Use</h1>
+<p class="meta">Effective <span data-c="effective">[EFFECTIVE DATE]</span> · Version 1</p>
+<p>These terms are an agreement between you and <span data-c="company">[COMPANY LEGAL NAME]</span>, <span data-c="address">[REGISTERED ADDRESS, KERALA, INDIA]</span> ("Aalthara", "we"). By creating an account or using the Aalthara apps or website (the "Service") you agree to them. Our <a href="#privacy">Privacy Policy</a> explains how we handle personal data and forms part of these terms.</p>
+
+<h2>1. Who may use Aalthara</h2>
+<p>You must be at least 18 years old and able to enter a contract. Each person may have one account, tied to a mobile number you control. Keep that number current; whoever controls it can sign in as you.</p>
+
+<h2>2. Families and admins</h2>
+<p>A "family" on Aalthara is a private space created by an owner on behalf of a family or a family association. The owner may appoint admins and editors. If you create or administer a family, you confirm that:</p>
+<ul>
+<li>you are authorised by the family or association to do so;</li>
+<li>you add other people's details only with their consent or another basis the law allows, and for a child only with the consent of a parent or guardian;</li>
+<li>you will correct or remove a person's details when they ask, and approve only people you believe belong to the family;</li>
+<li>the association, as the Data Fiduciary for its directory, appoints Aalthara as its Data Processor to host that directory on its instructions, with the safeguards described in the Privacy Policy.</li>
+</ul>
+
+<h2>3. Using the Service properly</h2>
+<p>The directory exists so relatives can know and reach one another. You agree not to:</p>
+<ul>
+<li>use members' details for advertising, fundraising outside the family's own activities, political or religious campaigning, lending, recruitment or any commercial approach;</li>
+<li>copy, scrape or export the directory other than through the tools provided, or pass it to anyone outside the family;</li>
+<li>add false information, impersonate anyone, or claim a profile that is not yours;</li>
+<li>harass, threaten or defame anyone, or post unlawful content;</li>
+<li>record or infer anyone's caste or religion on the Service;</li>
+<li>probe, disrupt or bypass the Service's security, or access it by automated means.</li>
+</ul>
+<p>We may remove content, suspend accounts or close a family that breaks these rules, after notice where that is practical.</p>
+
+<h2>4. Your content</h2>
+<p>You and your family keep all rights in what you add. You give us permission to host, copy, display and back it up only as needed to run the Service for you. We claim no ownership and make no other use of it.</p>
+
+<h2>5. Price and payment</h2>
+<ul>
+<li>A family may be tried free for 30 days with up to 50 members.</li>
+<li>To continue, the family pays a one-time licence fee for its plan and, from the second year, a yearly upkeep fee. Current prices are on our <a href="#pricing">price list</a>. Taxes are added as the law requires. Members are never charged.</li>
+<li>Payments are made on our website through our payment processor. We do not offer purchases inside the mobile apps.</li>
+<li>We will give at least 60 days' notice in the app before changing the yearly fee. The one-time licence fee already paid is never increased.</li>
+<li><b>Refunds.</b> If the family is not satisfied, the owner may ask for a full refund of the licence fee within 14 days of paying it. Yearly fees are refundable within 14 days of renewal. After that, fees are not refundable except where the law requires.</li>
+<li><b>If the yearly fee lapses.</b> After a 30-day grace period the family becomes read-only: members can still see and download everything but cannot add or change it. Paying the fee restores full use. If a family stays lapsed for 12 months we may delete it after giving the owner and admins at least 30 days' notice.</li>
+</ul>
+
+<h2>6. Availability and changes</h2>
+<p>We work to keep the Service running and your data safe, and we back it up daily. We may change or withdraw features; if we ever withdraw the Service altogether we will give families at least 90 days' notice and the means to download their data.</p>
+
+<h2>7. Closing your account</h2>
+<p>You may delete your account at any time in the app (Me › Privacy and my data › Delete my account) or by writing to us. An owner must hand the family to another owner, or delete the family, first. We may close an account that seriously or repeatedly breaks these terms.</p>
+
+<h2>8. What we are not responsible for</h2>
+<p>The information in a family's tree and directory is provided by its members. We do not verify it and are not responsible for its accuracy or for how members use it. Aalthara is not a record of legal kinship, succession or inheritance and must not be relied on as one. Blood group information is supplied by members for convenience and must always be confirmed by a medical professional.</p>
+<p>To the extent the law allows, the Service is provided "as is", and our total liability to a family or any member in connection with the Service is limited to the fees that family paid us in the 12 months before the claim arose. Nothing in these terms limits liability that cannot lawfully be limited, or your rights as a consumer under Indian law.</p>
+
+<h2>9. Law and disputes</h2>
+<p>These terms are governed by the laws of India. We would like to resolve any complaint directly: please contact our Grievance Officer first. Subject to that, the courts at <span data-c="courts">[CITY]</span>, Kerala have jurisdiction.</p>
+
+<h2>10. Changes to these terms</h2>
+<p>We may update these terms. We will tell you in the app at least 30 days before a material change takes effect. If you continue to use the Service after that date, you accept the updated terms; if you do not agree, you may close your account and, where a fee was paid for a period not yet used, ask for a proportionate refund.</p>
+
+<h2>11. Contact and grievances</h2>
+<p><b>Grievance Officer:</b> <span data-c="officer">[GRIEVANCE OFFICER NAME]</span>, <span data-c="company">[COMPANY LEGAL NAME]</span>, <span data-c="address">[REGISTERED ADDRESS, KERALA, INDIA]</span>. Email <span data-c="email">[SUPPORT EMAIL]</span>, phone <span data-c="phone">[SUPPORT PHONE]</span>. We acknowledge complaints within 48 hours and aim to resolve them within 30 days.</p>
+</article>
+</div>
+
+<!-- ═════════ DELETE ACCOUNT ═════════ -->
+<div data-view="delete-account">
+<article class="wrap legal">
+<h1>Delete your Aalthara account</h1>
+<p class="meta">How to delete your account and data, with or without the app.</p>
+<h2>In the app</h2>
+<ol><li>Open Aalthara and tap <b>Me</b>.</li><li>Tap <b>Privacy and my data</b>.</li><li>Tap <b>Delete my account</b> and confirm with the code we text you.</li></ol>
+<h2>Without the app</h2>
+<p>Write to <span data-c="email">[SUPPORT EMAIL]</span> or call <span data-c="phone">[SUPPORT PHONE]</span> from the mobile number on your account and ask us to delete it. We will confirm it is you with a code by text message and delete the account within 7 days.</p>
+<h2>What is deleted</h2>
+<ul><li>Your sign-in, mobile number, phone, WhatsApp, email and address.</li><li>Your photo, birthday, places, work, education, blood group and bio.</li><li>Your settings, event replies and notification tokens.</li></ul>
+<h2>What stays</h2>
+<ul><li>If relatives are connected through you in a family tree, an unnamed "Private member" placeholder keeps their links intact. It holds no personal details.</li><li>If you paid for a family, payment and tax records are kept for as long as the law requires.</li><li>Backups are overwritten within 35 days.</li></ul>
+<p>If you are the only owner of a family that other people use, hand it to another owner first, or delete the family for everyone.</p>
+</article>
+</div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><b>Aalthara · ആൽത്തറ</b><p>The family tree and directory for Kerala families. No ads.</p><p style="margin-top:12px">© <span id="yr">2026</span> <span data-c="company">[COMPANY LEGAL NAME]</span><br><span data-c="address">[REGISTERED ADDRESS, KERALA, INDIA]</span></p></div>
+    <div><b>Aalthara</b><a href="#features">What it does</a><br><a href="#pricing">Price</a><br><a href="#questions">Questions</a><br><a href="#start">Start your family</a></div>
+    <div><b>Legal and help</b><a href="#privacy">Privacy Policy</a><br><a href="#terms">Terms of Use</a><br><a href="#delete-account">Delete your account</a><br>Grievance Officer: <span data-c="officer">[GRIEVANCE OFFICER NAME]</span><br><span data-c="email">[SUPPORT EMAIL]</span> · <span data-c="phone">[SUPPORT PHONE]</span></div>
+  </div>
+</footer>
+
+<script>
+// Fill these in once; every page uses them. Anything left empty keeps its [PLACEHOLDER].
+var SITE = { company: "", address: "", email: "", phone: "", officer: "", effective: "", courts: "" };
+
+(function () {
+  Object.keys(SITE).forEach(function (k) {
+    if (!SITE[k]) return;
+    document.querySelectorAll('[data-c="' + k + '"]').forEach(function (el) { el.textContent = SITE[k]; });
+  });
+  document.querySelectorAll('[data-mail]').forEach(function (a) {
+    if (SITE.email) a.href = 'mailto:' + SITE.email + '?subject=' + encodeURIComponent(a.getAttribute('data-mail'));
+  });
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  var PAGES = ['privacy', 'terms', 'delete-account'];
+  var TITLES = { home: 'Aalthara — the family tree and directory for Kerala families', privacy: 'Privacy Policy — Aalthara', terms: 'Terms of Use — Aalthara', 'delete-account': 'Delete your account — Aalthara' };
+  function route() {
+    var hash = location.hash.replace('#', '');
+    var path = location.pathname.replace(/^\/+|\/+$/g, '');
+    var view = PAGES.indexOf(hash) > -1 ? hash : (!hash && PAGES.indexOf(path) > -1 ? path : 'home');
+    document.querySelectorAll('[data-view]').forEach(function (v) { v.classList.toggle('on', v.getAttribute('data-view') === view); });
+    document.title = TITLES[view];
+    if (view === 'home' && hash && hash !== 'home') {
+      var el = document.getElementById(hash);
+      if (el) { el.scrollIntoView(); return; }
+    }
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+})();
+</script>
+</body>
+</html>

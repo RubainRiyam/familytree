@@ -1,32 +1,13 @@
-# React + TypeScript + Vite
+# Aalthara · ആൽത്തറ
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+The family tree and directory for Kerala family associations. *The whole family, under one tree.*
 
-Currently, two official plugins are available:
+Start with `CLAUDE.md`. What is here:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- `site/` — launch website, Privacy Policy, Terms, account-deletion page. Static; deploy with `npx vercel deploy site`.
+- `supabase/` — database schema with row-level security and RPCs, plus tests. Run `scripts/test-db.sh` (needs local Postgres 15+ binaries).
+- `packages/core/` — kinship-term resolver and tests: `node --test packages/core/kinship.test.ts` (Node 22.18+).
+- `design/` — tokens and logo.
+- `docs/` — PRD, architecture, design rules, compliance notes, build plan.
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
-
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+The mobile app itself is not built yet; `docs/BUILD_PLAN.md` is the order to build it in.
