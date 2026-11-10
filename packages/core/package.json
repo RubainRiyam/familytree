@@ -1,0 +1,15 @@
+{
+  "name": "@aalthara/core",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    "./kinship": "./kinship.ts",
+    "./i18n": "./i18n/index.ts",
+    "./config": "./config.ts",
+    "./database.types": "./database.types.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p ."
+  }
+}

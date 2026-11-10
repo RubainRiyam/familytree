@@ -1,0 +1,9 @@
+[
+  "app.tagline",
+  "language.en",
+  "language.ml",
+  "language.switchTo",
+  "status.serverMissing",
+  "status.serverReady",
+  "status.configError"
+]

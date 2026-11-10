@@ -39,10 +39,10 @@ const pick = (g: Gender, male: string, female: string, other: string) =>
 export function tokens(self: { birthYear?: number }, path: Step[]): string[] {
   const out: string[] = [];
   for (let i = 0; i < path.length; i++) {
-    const s = path[i];
+    const s = path[i]!;
     const next = path[i + 1];
     if (s.step === 'parent' && next?.step === 'child') {
-      const ref = i === 0 ? self : path[i - 1];
+      const ref = i === 0 ? self : path[i - 1]!;
       const age = ref.birthYear != null && next.birthYear != null && ref.birthYear !== next.birthYear
         ? (next.birthYear < ref.birthYear ? 'e' : 'y') : '';
       out.push(next.gender === 'male' ? age + 'B' : next.gender === 'female' ? age + 'Z' : 'G');
@@ -61,7 +61,7 @@ export function kinTerm(self: { birthYear?: number }, path: Step[], overrides: R
   const loose = t.map((x) => x.replace(/^[ey](?=[BZ]$)/, '')).join('.');   // M.eB → M.B
   const hit = NAMED[key] ?? NAMED[loose] ?? (t.length === 1 ? BASE[key] : undefined);
   const en = hit?.[0] ?? t.map((x, i) => {
-    const word = BASE[x][0];
+    const word = BASE[x]![0];
     const w = i === 0 ? word : word.toLowerCase();
     return i < t.length - 1 ? w + "'s" : w;
   }).join(' ');

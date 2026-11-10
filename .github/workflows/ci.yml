@@ -1,0 +1,61 @@
+name: CI
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Typecheck, lint, unit and policy tests
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm gen:theme --check
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+
+  database:
+    name: Schema, RLS and RPC tests (scripts/test-db.sh)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Postgres binaries
+        run: ls -d /usr/lib/postgresql/*/bin || (sudo apt-get update && sudo apt-get install -y postgresql)
+      - run: GEN_TYPES=1 scripts/test-db.sh
+      - name: database.types.ts is up to date
+        run: git diff --exit-code packages/core/database.types.ts || (echo "Run pnpm gen:types and commit the result" && exit 1)
+
+  bundle:
+    name: App bundles for web, Android and iOS
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - name: Export (proves every platform bundles; does not build native binaries)
+        working-directory: apps/app
+        env: { CI: '1' }
+        run: |
+          npx expo export --platform web --output-dir dist/web
+          npx expo export --platform android --platform ios --output-dir dist/native
+      - name: JS bundle budget (ARCHITECTURE §3, 3 MB)
+        working-directory: apps/app
+        run: |
+          for f in dist/native/_expo/static/js/*/entry-*.hbc; do
+            s=$(stat -c %s "$f"); echo "$f $s bytes"; [ "$s" -le 3145728 ] || { echo "over budget"; exit 1; }
+          done
